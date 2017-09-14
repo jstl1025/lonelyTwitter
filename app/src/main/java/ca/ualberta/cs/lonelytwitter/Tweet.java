@@ -6,7 +6,7 @@ import java.util.Date;
  * Created by jlin7 on 9/13/17.
  */
 
-public class Tweet {
+public abstract class Tweet implements Tweetable{
     private String message;
     private Date date;
 
@@ -32,4 +32,10 @@ public class Tweet {
             throw new TweetTooLongException();
         }
     }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public abstract Boolean isImportant();
 }
