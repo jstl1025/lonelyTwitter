@@ -12,12 +12,10 @@ public abstract class Mood {
 
     public Mood(){
         date = new Date();
-        //this.mood = mood;
     }
 
     public Mood(Date date){
         this.date = date;
-        //this.mood = mood;
     }
 
     public void setDate(Date date){
@@ -29,6 +27,7 @@ public abstract class Mood {
     }
 
     public abstract String currentMood();
+
 
 
 }
