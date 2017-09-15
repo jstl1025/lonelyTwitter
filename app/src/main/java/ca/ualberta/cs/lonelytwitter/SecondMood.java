@@ -8,12 +8,11 @@ import java.util.Date;
 
 public class SecondMood extends Mood{
 
-    public SecondMood(String mood) {
-        super(mood);
+    public SecondMood() {
     }
 
-    public SecondMood(String mood, Date date) {
-        super(mood, date);
+    public SecondMood(Date date) {
+        super(date);
     }
 
     @Override

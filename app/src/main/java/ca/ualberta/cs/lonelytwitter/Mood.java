@@ -8,16 +8,16 @@ import java.util.Date;
 
 public abstract class Mood {
     private Date date;
-    private String mood;
+    //private String mood;
 
-    public Mood(String mood){
+    public Mood(){
         date = new Date();
-        this.mood = mood;
+        //this.mood = mood;
     }
 
-    public Mood(String mood, Date date){
+    public Mood(Date date){
         this.date = date;
-        this.mood = mood;
+        //this.mood = mood;
     }
 
     public void setDate(Date date){

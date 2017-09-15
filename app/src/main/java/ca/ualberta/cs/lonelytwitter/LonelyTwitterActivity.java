@@ -61,6 +61,12 @@ public class LonelyTwitterActivity extends Activity {
 				Log.d("","The isImportant method returns " + tweet1.isImportant());
 
 
+				Mood mood = new FirstMood();
+				SecondMood mood2 = new SecondMood();
+				ArrayList<Mood> moodList = new ArrayList<Mood>();
+				moodList.add(mood);
+				moodList.add(mood2);
+				//tweetList.add(moodList);
 
 				//finish();
 
