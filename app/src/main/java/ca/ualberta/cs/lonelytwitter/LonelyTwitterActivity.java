@@ -46,7 +46,7 @@ public class LonelyTwitterActivity extends Activity {
 
 
 				Tweet tweet = new ImportantTweet("");
-				Tweet tweet1 = new NormalTweet("Hi");
+				NormalTweet tweet1 = new NormalTweet("Hi");
 				try {
 					tweet.setMessage("Hello");
 				} catch (TweetTooLongException e){
