@@ -59,6 +59,9 @@ public class LonelyTwitterActivity extends Activity {
 				tweetList.add(tweet1);
 				Log.d("","The isImportant method returns " + tweet.isImportant());
 				Log.d("","The isImportant method returns " + tweet1.isImportant());
+
+
+
 				//finish();
 
 			}
