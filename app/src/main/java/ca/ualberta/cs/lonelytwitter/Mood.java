@@ -28,9 +28,7 @@ public abstract class Mood {
         return date;
     }
 
-    public String getMood(){
-        return mood;
-    }
+    public abstract String currentMood();
 
 
 }

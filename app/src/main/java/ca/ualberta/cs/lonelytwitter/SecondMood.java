@@ -17,7 +17,7 @@ public class SecondMood extends Mood{
     }
 
     @Override
-    public String getMood() {
+    public String currentMood() {
         return "Sad";
     }
 }

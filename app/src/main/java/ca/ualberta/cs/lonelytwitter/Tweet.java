@@ -10,6 +10,7 @@ public abstract class Tweet implements Tweetable{
     private String message;
     private Date date;
 
+
     public Tweet(String message){
         date = new Date();
         this.message = message;
@@ -42,4 +43,6 @@ public abstract class Tweet implements Tweetable{
     }
 
     public abstract Boolean isImportant();
+
+
 }
