@@ -1,3 +1,15 @@
+/*
+ * LonelyTwitterActivity
+ *
+ * Version 1.0
+ *
+ * September 27, 2017
+ *
+ * Copyright (c) 2017 Team X, CMPUT301, University of Alberta - All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ *  You can find a copy of the license in this project. Otherwise please contact contact@abc.ca.
+ */
+
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
@@ -26,6 +38,14 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * Activities that LonelyTwitter does, subclass of Activity
+ *
+ * @author team X
+ * @version 1.5
+ * @see Activity
+ * @since 1.0
+ */
 public class LonelyTwitterActivity extends Activity {
 
 	private static final String FILENAME = "file.sav";
@@ -36,6 +56,11 @@ public class LonelyTwitterActivity extends Activity {
 	private ArrayAdapter<Tweet> adapter;
 
 	/** Called when the activity is first created. */
+    /**
+     * Things to be showed and function availability provided when the App starts
+     *
+     * @param savedInstanceState
+     */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -47,7 +72,12 @@ public class LonelyTwitterActivity extends Activity {
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
 		clearButton.setOnClickListener(new View.OnClickListener(){
-			public void onClick(View v) {
+            /**
+             * Clear all tweets
+             *
+             * @param v
+             */
+            public void onClick(View v) {
 				setResult(RESULT_OK);
 
 				tweets.clear();
@@ -71,6 +101,9 @@ public class LonelyTwitterActivity extends Activity {
 		});
 	}
 
+    /**
+     * load old tweets from file and show on android monitor
+     */
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -81,6 +114,10 @@ public class LonelyTwitterActivity extends Activity {
 		oldTweetsList.setAdapter(adapter);
 	}
 
+    /**
+     * open the file and read it
+     * contents in the file are tweet object
+     */
 	private void loadFromFile() {
 		try {
 			FileInputStream fis = openFileInput(FILENAME);
@@ -98,7 +135,11 @@ public class LonelyTwitterActivity extends Activity {
 			throw new RuntimeException(e);
 		}
 	}
-	
+
+    /**
+     * take the user input as output to the file
+     * and add it into file
+     */
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
