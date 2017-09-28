@@ -1,5 +1,5 @@
 /*
- * Tweet
+ * TweetTooLongException
  *
  * Version 1.0
  *
