@@ -34,6 +34,7 @@ public class LonelyTwitterActivity extends Activity {
 	private ListView oldTweetsList;
 	private ArrayList<NormalTweet> tweetList = new ArrayList<NormalTweet>();
 	private ArrayAdapter<NormalTweet> adapter;
+	//private ArrayList<NormalTweet> searchTweet = new ArrayList<NormalTweet>();
 
 
 
@@ -44,7 +45,7 @@ public class LonelyTwitterActivity extends Activity {
 
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
-		Button clearButton = (Button) findViewById(R.id.clear);
+		Button searchButton = (Button) findViewById(R.id.search);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
@@ -55,25 +56,34 @@ public class LonelyTwitterActivity extends Activity {
 				NormalTweet newTweet = new NormalTweet(text);
 				tweetList.add(newTweet);
 				adapter.notifyDataSetChanged();
-				saveInFile(); // TODO replace this with elastic search
+				//saveInFile(); // TODO replace this with elastic search
 				ElasticsearchTweetController.AddTweetsTask addTweetsTask =
 						new ElasticsearchTweetController.AddTweetsTask();
 				addTweetsTask.execute(newTweet);
 			}
 		});
 
-		clearButton.setOnClickListener(new View.OnClickListener() {
+		searchButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
 				//tweetList.clear();
 				//deleteFile(FILENAME);  // TODO deprecate this button
-				//adapter.notifyDataSetChanged();
-				String query = "{\"query\":{\"match_all\":{\""+text+"\"}}}";
+				//String query = "{\"query\":{\"match_all\":{\""+text+"\"}}}";
+				String query = "{\"query\":{\"term\":{\"message\":\""+ text + "\"}}}";
+
+				//String query = "{\n" + " \"query\": { \"term\": {\"message\":\"" + text + "\"} }\n" + "}";
 				ElasticsearchTweetController.GetTweetsTask getTweetsTask =
 						new ElasticsearchTweetController.GetTweetsTask();
+				tweetList.clear();
 				getTweetsTask.execute(query);
+				try{
+					tweetList.addAll(getTweetsTask.get());
+				}
+				catch (Exception e){
+					Log.i("Error","Failed to get the tweets from the async object");
+				}
 				adapter.notifyDataSetChanged();
 			}
 		});

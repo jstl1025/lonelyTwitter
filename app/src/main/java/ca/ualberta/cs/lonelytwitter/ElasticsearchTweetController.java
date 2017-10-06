@@ -59,20 +59,23 @@ public class ElasticsearchTweetController {
             ArrayList<NormalTweet> tweets = new ArrayList<NormalTweet>();
 
                 // TODO Build the query
+            //String query = "{\"query\":{\"term\":{\"message\":\""+ search_parameters[0] + "\"}}}";
+
             Search search = new Search.Builder(search_parameters[0])
                     .addIndex("testing")
                     .addType("tweet")
                     .build();
             try {
+                // TODO get the results of the query
                 SearchResult result = client.execute(search);
                 if(result.isSucceeded()){
                     List<NormalTweet> foundTweets = result.getSourceAsObjectList(NormalTweet.class);
                     tweets.addAll(foundTweets);
                 }
                 else{
-                    Log.i("Error","The search query failed");
+                    Log.i("Error","The search query failed to find any tweet that matched");
                 }
-               // TODO get the results of the query
+
             }
             catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
