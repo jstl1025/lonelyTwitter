@@ -59,9 +59,23 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
         ArrayList<Tweet> orderedList=list.getTweet();
 
         for (int i=0; i < orderedList.size() ;i++){
-            if ((orderedList.get(i).getDate().compareTo(orderedList.get(i + 1).getDate()))<0){
+            if ((orderedList.get(i).getDate().compareTo(orderedList.get(i + 1).getDate()))>0){
                 //fail();
             }
+        }
+    }
+
+    public void testGetCount(){
+        TweetList list = new TweetList();
+        if (list.getCount()!=0){
+            fail();
+        }
+        Tweet tweet = new NormalTweet("count1");
+        Tweet tweet1 = new NormalTweet("count2");
+        list.add(tweet);
+        list.add(tweet1);
+        if (list.getCount()!=2){
+            fail();
         }
     }
 }
