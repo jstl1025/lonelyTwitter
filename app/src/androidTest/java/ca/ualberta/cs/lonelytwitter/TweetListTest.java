@@ -60,7 +60,7 @@ public class TweetListTest extends ActivityInstrumentationTestCase2 {
 
         for (int i=0; i < orderedList.size() ;i++){
             if ((orderedList.get(i).getDate().compareTo(orderedList.get(i + 1).getDate()))>0){
-                //fail();
+                fail();
             }
         }
     }
